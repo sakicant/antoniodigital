@@ -1,0 +1,28 @@
+{
+  "slug": "",
+  "title": "Antonio Digital | Izrada web stranica, SEO i hosting, Šibenik",
+  "description": "Izrađujem brze web stranice za male tvrtke u Šibeniku i diljem Hrvatske, a zatim brinem o SEO-u, hostingu i održavanju. Jedna osoba, od početka do kraja. Zatražite ponudu.",
+  "keywords": "izrada web stranica šibenik, web dizajn šibenik, seo šibenik, web dizajn hrvatska, hosting web stranica, antonio digital",
+  "og_image": "https://antoniodigital.com/assets/img/og-image.png",
+  "schema": [
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://antoniodigital.com/#business",
+      "name": "Antonio Digital",
+      "description": "Izrada web stranica, SEO optimizacija, održavanje i hosting za male tvrtke u Šibeniku i diljem Hrvatske.",
+      "url": "https://antoniodigital.com/",
+      "email": "hello@antoniodigital.com",
+      "areaServed": ["Šibenik", "Hrvatska", "Worldwide"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Šibenik",
+        "postalCode": "22000",
+        "addressCountry": "HR"
+      },
+      "founder": {"@type": "Person", "name": "Antonio Šakić"},
+      "knowsLanguage": ["hr", "en"],
+      "serviceType": ["Izrada web stranica", "Web razvoj", "SEO optimizacija", "Održavanje web stranica", "Web hosting"]
+    }
+  ]
+}

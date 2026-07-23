@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local secrets / mail config (never commit)
+config.php
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+
+# Vercel
+.vercel/

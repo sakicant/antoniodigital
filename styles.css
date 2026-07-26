@@ -132,7 +132,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .svc-row .num { font-family: var(--serif); font-size: 1.5rem; color: var(--clay); }
 .svc-row h3 { font-size: 1.6rem; }
 .svc-row p { color: var(--ink-soft); }
-.svc-note { margin-top: 26px; font-size: .98rem; color: var(--ink-faint); max-width: 62ch; }
+.svc-note { margin: 32px auto 0; font-size: .98rem; color: var(--ink-faint); max-width: 62ch; text-align: center; }
 .svc-note b { color: var(--ink); font-weight: 500; }
 
 /* ---------- Work grid ---------- */

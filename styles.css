@@ -3,8 +3,8 @@
    Deliberately bare: hairline rules, generous space, no motion. */
 
 :root {
-  --paper: #faf6ee;      /* page background, warm ivory (light) */
-  --shell: #ede5d5;      /* header & footer, a touch darker than paper */
+  --paper: #fdfcf9;      /* page background, near-white with a hint of warmth */
+  --shell: #eee8db;      /* header & footer, a touch darker than paper */
   --surface: #fffdf8;    /* frames, insets */
   --ink: #191510;        /* headings, primary text */
   --ink-soft: #6a5f4e;   /* body copy, secondary */

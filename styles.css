@@ -3,7 +3,8 @@
    Deliberately bare: hairline rules, generous space, no motion. */
 
 :root {
-  --paper: #f6f1e9;      /* page background, warm ivory */
+  --paper: #faf6ee;      /* page background, warm ivory (light) */
+  --shell: #ede5d5;      /* header & footer, a touch darker than paper */
   --surface: #fffdf8;    /* frames, insets */
   --ink: #191510;        /* headings, primary text */
   --ink-soft: #6a5f4e;   /* body copy, secondary */
@@ -52,7 +53,7 @@ img { max-width: 100%; display: block; }
 .skip-link:focus { left: 0; }
 
 /* ---------- Header ---------- */
-.site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--shell) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line-strong); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
 /* Logo lockup: "Antonio" (gold Allura script) over "DIGITAL" (spaced serif caps).
    Carried over from the taxi identity, TAXI swapped for DIGITAL below the name. */
@@ -84,7 +85,7 @@ img { max-width: 100%; display: block; }
 .tlink .arw { color: var(--clay); }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(48px, 7vw, 96px) 0 clamp(40px, 6vw, 80px); }
+.hero { padding: clamp(30px, 4vw, 56px) 0 clamp(40px, 6vw, 80px); }
 .hero-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: clamp(34px, 5vw, 60px); }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 68px); align-items: center; }
 .hero h1 { margin-bottom: 26px; }
@@ -174,7 +175,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .cta .sub { margin-top: 22px; color: var(--ink-faint); }
 
 /* ---------- Footer ---------- */
-.site-footer { border-top: 1px solid var(--line-strong); padding: 56px 0 30px; }
+.site-footer { background: var(--shell); border-top: 1px solid var(--line-strong); padding: 56px 0 30px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; padding-bottom: 34px; }
 .footer-brand .brand-text { font-family: var(--serif); font-size: 1.6rem; color: var(--ink); }
 .footer-brand p { color: var(--ink-soft); font-size: .96rem; margin-top: 12px; max-width: 38ch; }

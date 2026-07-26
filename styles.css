@@ -96,7 +96,10 @@ img { max-width: 100%; display: block; }
 /* ---------- Hero ---------- */
 .hero { padding: clamp(30px, 4vw, 56px) 0 clamp(40px, 6vw, 80px); }
 .hero-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: clamp(34px, 5vw, 60px); }
-.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 68px); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 68px); align-items: stretch; }
+.hero-grid .hero-copy { display: flex; flex-direction: column; justify-content: center; }
+.hero-grid > .frame { display: flex; flex-direction: column; }
+.hero-grid > .frame .frame-shot { flex: 1 1 auto; }
 .hero h1 { margin-bottom: 26px; }
 .hero-lead { font-size: 1.16rem; color: var(--ink-soft); max-width: 40ch; margin-bottom: 30px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
@@ -206,6 +209,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
   .nav-toggle { display: flex; }
   .hero-grid, .proof-grid, .about-grid, .work-grid, .spec-grid { grid-template-columns: 1fr; }
   .hero-grid .hero-copy { order: 0; }
+  .hero-grid > .frame { display: block; }
   .sec-head { grid-template-columns: 1fr; gap: 14px; }
   .svc-row { grid-template-columns: 54px 1fr; }
   .svc-row p { grid-column: 2; }

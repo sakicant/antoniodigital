@@ -92,6 +92,17 @@ img { max-width: 100%; display: block; }
 .btn-primary:hover { background: var(--clay-deep); color: #fff; }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .btn-ghost:hover { border-color: var(--clay); color: var(--clay); }
+.btn-whatsapp { background: #25d366; color: #fff; }
+.btn-whatsapp:hover { background: #1da851; color: #fff; }
+.btn-whatsapp svg { width: 17px; height: 17px; flex: none; }
+.btn-sm { padding: 11px 16px; font-size: .88rem; }
+
+/* CTA button row (homepage / pages) */
+.cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+
+/* Buttons inside a pricing tier, pinned to the card bottom */
+.tier-cta { margin-top: auto; padding-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+.tier-cta .btn { justify-content: center; }
 
 /* ---------- Hero ---------- */
 .hero { padding: clamp(30px, 4vw, 56px) 0 clamp(40px, 6vw, 80px); }

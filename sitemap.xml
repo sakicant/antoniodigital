@@ -16,4 +16,12 @@
     <xhtml:link rel="alternate" hreflang="hr" href="https://antoniodigital.com/portfolio/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/portfolio/"/>
   </url>
+  <url>
+    <loc>https://antoniodigital.com/usluge/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://antoniodigital.com/usluge/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/usluge/"/>
+  </url>
 </urlset>

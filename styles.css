@@ -54,9 +54,11 @@ img { max-width: 100%; display: block; }
 /* ---------- Header ---------- */
 .site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
-.brand { font-family: var(--serif); font-size: 1.5rem; color: var(--ink); letter-spacing: -0.02em; }
-.brand-dot { color: var(--clay); }
-.brand-mark { display: none; }
+/* Logo lockup: "Antonio" (gold Allura script) over "DIGITAL" (spaced serif caps).
+   Carried over from the taxi identity, TAXI swapped for DIGITAL below the name. */
+.ad-logo { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
+.ad-logo__name { font-family: "Allura", cursive; font-size: 2.15rem; line-height: .82; color: #b7902f; }
+.ad-logo__digital { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: .58rem; letter-spacing: .46em; padding-left: .46em; text-transform: uppercase; color: var(--ink); margin-top: 3px; }
 .nav { display: flex; align-items: center; gap: 34px; }
 .nav > a { font-size: .95rem; color: var(--ink-soft); }
 .nav > a:hover { color: var(--clay); }
@@ -124,6 +126,23 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .work-cap .visit { font-size: .82rem; color: var(--clay); white-space: nowrap; }
 .work-fact { margin-top: 12px; font-size: .96rem; color: var(--ink-soft); }
 .work-fact .k { font-family: var(--mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-faint); margin-right: 8px; }
+.work-group + .work-group { margin-top: clamp(48px, 7vw, 88px); padding-top: clamp(40px, 5vw, 60px); border-top: 1px solid var(--line); }
+.work-tag { display: inline-block; font-size: .64rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-faint); white-space: nowrap; }
+.work-tag.own { color: var(--clay-deep); border-color: color-mix(in srgb, var(--clay) 50%, var(--line)); background: color-mix(in srgb, var(--clay) 9%, transparent); }
+.work-tag.wip { font-style: normal; }
+.work-item.wip { pointer-events: none; }
+.work-item.wip .frame-shot { filter: saturate(.6); }
+
+/* ---------- Specialty (taxi & transfer niche) ---------- */
+.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 68px); align-items: start; }
+.spec-copy h2 { margin-bottom: 20px; }
+.spec-copy p { color: var(--ink-soft); margin-bottom: 14px; }
+.spec-copy .label { display: block; margin-bottom: 16px; }
+.spec-list { list-style: none; border-top: 1px solid var(--line); }
+.spec-list li { position: relative; padding: 17px 0 17px 34px; border-bottom: 1px solid var(--line); color: var(--ink); }
+.spec-list li::before { content: ""; position: absolute; left: 0; top: 26px; width: 15px; height: 1.5px; background: var(--clay); }
+.spec-list li b { font-weight: 500; }
+.spec-list li span { display: block; font-size: .92rem; color: var(--ink-soft); }
 
 /* ---------- Proof (SEO chart) ---------- */
 .proof-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(30px, 5vw, 64px); align-items: center; }
@@ -170,7 +189,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 @media (max-width: 860px) {
   .nav > a:not(.nav-cta), .nav .lang-switch { display: none; }
   .nav-toggle { display: flex; }
-  .hero-grid, .proof-grid, .about-grid, .work-grid { grid-template-columns: 1fr; }
+  .hero-grid, .proof-grid, .about-grid, .work-grid, .spec-grid { grid-template-columns: 1fr; }
   .hero-grid .frame { order: -1; }
   .sec-head { grid-template-columns: 1fr; gap: 14px; }
   .svc-row { grid-template-columns: 54px 1fr; }

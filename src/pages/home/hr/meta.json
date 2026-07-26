@@ -1,8 +1,8 @@
 {
   "slug": "",
-  "title": "Antonio Digital | Izrada web stranica, SEO i hosting, Šibenik",
-  "description": "Izrađujem brze web stranice za male tvrtke u Šibeniku i diljem Hrvatske, a zatim brinem o SEO-u, hostingu i održavanju. Jedna osoba, od početka do kraja. Zatražite ponudu.",
-  "keywords": "izrada web stranica šibenik, web dizajn šibenik, seo šibenik, web dizajn hrvatska, hosting web stranica, antonio digital",
+  "title": "Antonio Digital | Web stranice i SEO za taksi i transfer tvrtke",
+  "description": "Specijalist za izradu i SEO web stranica taksi i transfer tvrtki. Vodim vlastite taksi stranice pa znam što donosi rezervacije. Radim i za druge lokalne tvrtke u Šibeniku i diljem Hrvatske.",
+  "keywords": "web stranica za taksi, izrada web stranice taksi, transfer web stranica, seo za taksi, web stranice šibenik, web dizajn taksi, antonio digital",
   "og_image": "https://antoniodigital.com/assets/img/og-image.png",
   "schema": [
     {
@@ -10,7 +10,7 @@
       "@type": "ProfessionalService",
       "@id": "https://antoniodigital.com/#business",
       "name": "Antonio Digital",
-      "description": "Izrada web stranica, SEO optimizacija, održavanje i hosting za male tvrtke u Šibeniku i diljem Hrvatske.",
+      "description": "Specijalist za izradu i SEO web stranica taksi i transfer tvrtki. Također izrada, SEO, održavanje i hosting za druge male tvrtke u Šibeniku i diljem Hrvatske.",
       "url": "https://antoniodigital.com/",
       "email": "hello@antoniodigital.com",
       "areaServed": ["Šibenik", "Hrvatska", "Worldwide"],

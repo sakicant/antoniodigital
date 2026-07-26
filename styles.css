@@ -155,13 +155,13 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .proof h2 { margin-bottom: 20px; }
 .proof p { color: var(--ink-soft); margin-bottom: 14px; }
 .proof-fig { border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface); }
-.proof-fig img { width: 100%; background: linear-gradient(135deg, #efe7d6, #f7f1e6); min-height: 200px; }
+.proof-fig img { width: 100%; height: auto; display: block; }
 .proof-fig figcaption { padding: 13px 18px; font-size: .82rem; color: var(--ink-faint); border-top: 1px solid var(--line); font-family: var(--mono); }
 
 /* ---------- About teaser ---------- */
 .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px, 5vw, 64px); align-items: center; }
 .about-portrait { border-radius: 12px; overflow: hidden; border: 1px solid var(--line-strong); }
-.about-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about-portrait img { width: 100%; height: auto; display: block; }
 .about-body h2 { margin-bottom: 22px; }
 .about-body p { margin-bottom: 16px; }
 .about-body .sig { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--ink); margin-top: 6px; }

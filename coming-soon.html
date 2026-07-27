@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antonio Digital — Uskoro</title>
+<meta name="description" content="Antonio Digital: kompletna usluga izrade, SEO optimizacije, hostinga i održavanja web stranica. Nova stranica je u izradi. Javite se već danas.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#fdfcf9">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Antonio Digital — Uskoro">
+<meta property="og:description" content="Kompletna usluga izrade, SEO-a, hostinga i održavanja web stranica. Nova stranica je u izradi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b7902f'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='44' font-weight='600' fill='%23fdfcf9' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fdfcf9; --shell: #eee8db; --ink: #191510; --ink-soft: #6a5f4e;
+    --ink-faint: #9a8f7c; --line: #ddd2bf; --line-strong: #c8bca4;
+    --clay: #b06a3a; --clay-deep: #8c5127; --gold: #b7902f;
+    --serif: "Newsreader", Georgia, serif; --sans: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans); background: var(--paper); color: var(--ink-soft);
+    min-height: 100vh; display: flex; flex-direction: column;
+    -webkit-font-smoothing: antialiased; line-height: 1.7; overflow-x: hidden;
+  }
+  .wrap { width: 100%; max-width: 720px; margin: 0 auto; padding: 0 26px; }
+
+  /* Header */
+  header { border-bottom: 1px solid var(--line-strong); background: var(--shell); }
+  .head-in { display: flex; justify-content: center; align-items: center; height: 84px; }
+  .logo { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
+  .logo .name { font-family: "Allura", cursive; font-size: 2.4rem; line-height: .82; color: var(--gold); }
+  .logo .digital { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: .62rem; letter-spacing: .46em; padding-left: .46em; text-transform: uppercase; color: var(--ink); margin-top: 3px; }
+
+  /* Main */
+  main { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(48px, 10vw, 96px) 0; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px; font-size: .74rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .2em; color: var(--ink-faint);
+    border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 16px; margin-bottom: 30px;
+  }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--clay); }
+  h1 {
+    font-family: var(--serif); font-weight: 400; color: var(--ink);
+    font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.05; letter-spacing: -0.015em; margin-bottom: 24px;
+  }
+  h1 em { font-style: italic; color: var(--clay); }
+  .lead { font-size: 1.15rem; color: var(--ink-soft); max-width: 46ch; margin: 0 auto 38px; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: .98rem;
+    padding: 15px 28px; border-radius: 9px; border: 1px solid transparent; text-decoration: none;
+    transition: background .15s, border-color .15s, color .15s, transform .15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-wa { background: #25d366; color: #fff; }
+  .btn-wa:hover { background: #1da851; }
+  .btn-wa svg { width: 18px; height: 18px; }
+  .btn-mail { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+  .btn-mail:hover { border-color: var(--clay); color: var(--clay); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); background: var(--shell); }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; align-items: center; padding: 22px 0; font-size: .86rem; color: var(--ink-faint); }
+  .foot-in a { color: var(--ink-soft); text-decoration: none; }
+  .foot-in a:hover { color: var(--clay); }
+  .dot { color: var(--line-strong); }
+
+  @media (max-width: 480px) {
+    .actions { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap head-in">
+      <a class="logo" href="/" aria-label="Antonio Digital">
+        <span class="name">Antonio</span>
+        <span class="digital">Digital</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <span class="eyebrow">Stranica u izradi</span>
+      <h1>Radimo na nečemu <em>dobrom</em>.</h1>
+      <p class="lead">Nova stranica Antonio Digital uskoro stiže: kompletna usluga izrade, SEO optimizacije, hostinga i održavanja web stranica. U međuvremenu me slobodno kontaktirajte, rado ću vam pomoći s vašim projektom.</p>
+      <div class="actions">
+        <a class="btn btn-wa" href="https://wa.me/385994471013?text=Bok%20Antonio%2C%20javljam%20se%20preko%20antoniodigital.com.%20Zanima%20me%20izrada%20web%20stranice." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.65.15-.2.3-.75.95-.9 1.15-.15.2-.35.2-.65.05-.3-.15-1.25-.45-2.4-1.5-.9-.8-1.5-1.75-1.65-2.05-.15-.3 0-.45.15-.6.15-.15.3-.35.45-.55.15-.2.2-.3.3-.5.1-.2.05-.4-.05-.55-.1-.15-.65-1.55-.9-2.15-.25-.55-.5-.5-.65-.5h-.55c-.2 0-.5.05-.75.35-.25.3-.95.95-.95 2.3 0 1.35.95 2.65 1.1 2.85.15.2 1.9 2.9 4.6 4.05.65.3 1.15.45 1.55.55.65.2 1.25.2 1.7.1.5-.05 1.7-.7 1.95-1.35.25-.65.25-1.2.15-1.35-.1-.15-.3-.2-.6-.35zM12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.4A10 10 0 1012 2z"/></svg>
+          WhatsApp
+        </a>
+        <a class="btn btn-mail" href="mailto:hello@antoniodigital.com">hello@antoniodigital.com</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot-in">
+      <span>&copy; <span id="year">2026</span> Antonio Digital</span>
+      <span class="dot">&middot;</span>
+      <span>Šibenik, Hrvatska</span>
+      <span class="dot">&middot;</span>
+      <a href="mailto:hello@antoniodigital.com">hello@antoniodigital.com</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -9,6 +9,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/"/>
   </url>
   <url>
+    <loc>https://antoniodigital.com/o-meni/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://antoniodigital.com/o-meni/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/o-meni/"/>
+  </url>
+  <url>
     <loc>https://antoniodigital.com/portfolio/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>

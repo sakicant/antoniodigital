@@ -1,0 +1,19 @@
+{
+  "slug": "o-meni",
+  "title": "O meni | Antonio Šakić — Antonio Digital",
+  "description": "Antonio Šakić, web dizajner iz okolice Šibenika. Vlastite taksi stranice naučile su me izradi i SEO-u, a danas to radim za druge. Jedna osoba, od ideje do održavanja.",
+  "keywords": "antonio šakić, web dizajner šibenik, o meni, antonio digital, izrada web stranica šibenik",
+  "schema": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Antonio Šakić",
+      "jobTitle": "Web dizajner i SEO stručnjak",
+      "url": "https://antoniodigital.com/o-meni/",
+      "image": "https://antoniodigital.com/assets/img/antonio-portrait.webp",
+      "worksFor": {"@type": "Organization", "name": "Antonio Digital", "@id": "https://antoniodigital.com/#business"},
+      "address": {"@type": "PostalAddress", "addressLocality": "Šibenik", "addressCountry": "HR"},
+      "knowsAbout": ["Izrada web stranica", "SEO optimizacija", "Web hosting", "Održavanje web stranica"]
+    }
+  ]
+}

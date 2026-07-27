@@ -10,16 +10,26 @@
       "@type": "ProfessionalService",
       "@id": "https://antoniodigital.com/#business",
       "name": "Antonio Digital",
+      "alternateName": "Antonio Digital - Izrada Web Stranica",
       "description": "Specijalist za izradu i SEO web stranica taksi i transfer tvrtki. Također izrada, SEO, održavanje i hosting za druge male tvrtke u Šibeniku i diljem Hrvatske.",
       "url": "https://antoniodigital.com/",
       "email": "info@antoniodigital.com",
+      "telephone": "+385994471013",
+      "priceRange": "€€",
       "areaServed": ["Šibenik", "Hrvatska", "Worldwide"],
+      "sameAs": ["https://share.google/36FSLsc7Fa3hbYQ6h"],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Šibenik",
         "postalCode": "22000",
         "addressCountry": "HR"
       },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "07:00",
+        "closes": "15:00"
+      }],
       "founder": {"@type": "Person", "name": "Antonio Šakić"},
       "knowsLanguage": ["hr", "en"],
       "serviceType": ["Izrada web stranica", "Web razvoj", "SEO optimizacija", "Održavanje web stranica", "Web hosting"]

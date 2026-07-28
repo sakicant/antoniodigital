@@ -243,7 +243,22 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .footer-bottom { display: flex; justify-content: space-between; padding-top: 22px; border-top: 1px solid var(--line); font-size: .86rem; color: var(--ink-faint); }
 .footer-bottom a:hover { color: var(--clay); }
 
-/* ---------- Contact form (used later) ---------- */
+/* ---------- Contact page ---------- */
+.contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.contact-info .lead { color: var(--ink-soft); font-size: 1.08rem; margin-bottom: 24px; }
+.contact-info .btn-whatsapp { margin-bottom: 30px; }
+.contact-list { list-style: none; }
+.contact-list li { display: flex; flex-direction: column; gap: 3px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.contact-list li:first-child { border-top: 1px solid var(--line); }
+.contact-list .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); font-weight: 600; }
+.contact-list a, .contact-list span:not(.k) { color: var(--ink); font-size: 1.05rem; }
+.contact-list a:hover { color: var(--clay); }
+.contact-form-card { background: var(--surface); border: 1px solid var(--line-strong); border-radius: 16px; padding: clamp(26px, 4vw, 38px); }
+.contact-form-card .label { display: block; margin-bottom: 18px; }
+.contact-form-card .btn { width: 100%; justify-content: center; margin-top: 6px; }
+.form-note { font-size: .82rem; color: var(--ink-faint); margin-top: 14px; text-align: center; }
+
+/* ---------- Contact form fields ---------- */
 .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px; }
 .field label { font-size: .82rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); }
 .field input, .field textarea { font-family: inherit; font-size: 1rem; padding: 13px 15px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink); }
@@ -253,7 +268,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 @media (max-width: 860px) {
   .nav > a:not(.nav-cta), .nav .lang-switch { display: none; }
   .nav-toggle { display: flex; }
-  .hero-grid, .proof-grid, .about-grid, .work-grid, .spec-grid { grid-template-columns: 1fr; }
+  .hero-grid, .proof-grid, .about-grid, .work-grid, .spec-grid, .contact-grid { grid-template-columns: 1fr; }
   .usluge-nav { grid-template-columns: repeat(2, 1fr); }
   .hero-grid .hero-copy { order: 0; }
   .hero-grid > .frame { display: block; }

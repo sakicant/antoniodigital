@@ -8,8 +8,9 @@
 header('Content-Type: application/json; charset=utf-8');
 
 $TO   = 'info@antoniodigital.com';
-// "From" must be an address on your own domain, otherwise mail gets flagged as spoofed.
-$FROM = 'noreply@antoniodigital.com';
+// "From" is a real mailbox on the domain (created in cPanel) for best deliverability.
+// The visitor's address goes in Reply-To below, so replying reaches them.
+$FROM = 'info@antoniodigital.com';
 
 function fail($msg, $code = 400) {
     http_response_code($code);

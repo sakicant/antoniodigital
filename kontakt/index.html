@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=e8aff8e17c">
+<link rel="stylesheet" href="/styles.css?v=58f0e63154">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -96,29 +96,37 @@
 
     <div class="contact-form-card">
       <span class="label">Obrazac za upit</span>
-      <form action="https://formsubmit.co/info@antoniodigital.com" method="POST">
-        <input type="hidden" name="_subject" value="Novi upit s antoniodigital.com">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none">
+      <form id="contactForm" action="/contact.php" method="POST" novalidate>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field">
           <label for="ime">Ime i prezime</label>
-          <input id="ime" type="text" name="Ime" autocomplete="name" required>
+          <input id="ime" type="text" name="ime" autocomplete="name" required>
         </div>
         <div class="field">
           <label for="email">Email</label>
-          <input id="email" type="email" name="Email" autocomplete="email" required>
+          <input id="email" type="email" name="email" autocomplete="email" required>
         </div>
         <div class="field">
-          <label for="tvrtka">Tvrtka <span style="color:var(--ink-faint);font-weight:400;text-transform:none;letter-spacing:0">(nije obavezno)</span></label>
-          <input id="tvrtka" type="text" name="Tvrtka" autocomplete="organization">
+          <label for="tvrtka">Tvrtka <span class="opt">(nije obavezno)</span></label>
+          <input id="tvrtka" type="text" name="tvrtka" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="usluga">Usluga koja vas zanima</label>
+          <select id="usluga" name="usluga">
+            <option value="Izrada web stranice">Izrada web stranice</option>
+            <option value="SEO optimizacija">SEO optimizacija</option>
+            <option value="Hosting">Hosting</option>
+            <option value="Održavanje">Održavanje</option>
+            <option value="Ostalo">Ostalo / nisam siguran</option>
+          </select>
         </div>
         <div class="field">
           <label for="poruka">Poruka</label>
-          <textarea id="poruka" name="Poruka" rows="5" required></textarea>
+          <textarea id="poruka" name="poruka" rows="5" required></textarea>
         </div>
+        <label class="consent"><input type="checkbox" name="consent" value="1" required> Slažem se da Antonio Digital koristi moje podatke isključivo za odgovor na ovaj upit.</label>
         <button type="submit" class="btn btn-primary">Pošaljite upit <span class="arw">&rarr;</span></button>
-        <p class="form-note">Vaše podatke koristim isključivo za odgovor na ovaj upit.</p>
+        <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -154,6 +162,6 @@
   </div>
 </footer>
 
-<script src="/script.js?v=e8aff8e17c" defer></script>
+<script src="/script.js?v=58f0e63154" defer></script>
 </body>
 </html>

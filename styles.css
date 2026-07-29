@@ -261,8 +261,15 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 /* ---------- Contact form fields ---------- */
 .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px; }
 .field label { font-size: .82rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); }
-.field input, .field textarea { font-family: inherit; font-size: 1rem; padding: 13px 15px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink); }
-.field input:focus, .field textarea:focus { outline: 2px solid var(--clay); border-color: transparent; }
+.field input, .field textarea, .field select { font-family: inherit; font-size: 1rem; padding: 13px 15px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink); width: 100%; }
+.field input:focus, .field textarea:focus, .field select:focus { outline: 2px solid var(--clay); border-color: transparent; }
+.field label .opt { color: var(--ink-faint); font-weight: 400; text-transform: none; letter-spacing: 0; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; color: var(--ink-soft); margin: 2px 0 20px; cursor: pointer; line-height: 1.5; }
+.consent input { margin-top: 3px; flex: none; accent-color: var(--clay); }
+.form-status { margin-top: 14px; font-size: .92rem; min-height: 1.2em; }
+.form-status.ok { color: #3f7a4e; }
+.form-status.err { color: #c0392b; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {

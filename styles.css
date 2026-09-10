@@ -1,5 +1,5 @@
 /* Antonio Digital — dark & premium, modern. Charcoal background, off-white
-   text, cool blue accent. Inter for everything; Allura + Cormorant for the logo. */
+   text, warm gold accent. Inter for everything; Allura + Cormorant for the logo. */
 
 :root {
   color-scheme: dark;
@@ -11,8 +11,8 @@
   --ink-faint: #78859a;  /* labels, captions */
   --line: #222a35;       /* hairlines */
   --line-strong: #323c4b;
-  --clay: #38bdf8;       /* accent: cool sky blue */
-  --clay-deep: #0ea5e9;
+  --clay: #f5b73c;       /* accent: warm gold */
+  --clay-deep: #e2a621;
 
   --wrap: 1180px;
   --serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

@@ -1,21 +1,21 @@
-/* Antonio Digital — editorial & refined. Light, airy, honest, practical.
-   Warm paper + ochre/clay accent. Newsreader (serif) + Inter (body).
-   Deliberately bare: hairline rules, generous space, no motion. */
+/* Antonio Digital — dark & premium, modern. Charcoal background, off-white
+   text, cool blue accent. Inter for everything; Allura + Cormorant for the logo. */
 
 :root {
-  --paper: #fdfcf9;      /* page background, near-white with a hint of warmth */
-  --shell: #eee8db;      /* header & footer, a touch darker than paper */
-  --surface: #fffdf8;    /* frames, insets */
-  --ink: #191510;        /* headings, primary text */
-  --ink-soft: #6a5f4e;   /* body copy, secondary */
-  --ink-faint: #9a8f7c;  /* labels, captions */
-  --line: #ddd2bf;       /* hairlines */
-  --line-strong: #c8bca4;
-  --clay: #b06a3a;       /* accent: ochre/clay */
-  --clay-deep: #8c5127;
+  color-scheme: dark;
+  --paper: #0e1116;      /* page background, dark charcoal */
+  --shell: #131820;      /* header & footer, slightly lifted */
+  --surface: #171d27;    /* cards, frames, insets */
+  --ink: #eef2f8;        /* headings, primary text */
+  --ink-soft: #a9b5c5;   /* body copy, secondary */
+  --ink-faint: #78859a;  /* labels, captions */
+  --line: #222a35;       /* hairlines */
+  --line-strong: #323c4b;
+  --clay: #38bdf8;       /* accent: cool sky blue */
+  --clay-deep: #0ea5e9;
 
   --wrap: 1180px;
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
 }
@@ -28,17 +28,17 @@ body {
   background: var(--paper);
   color: var(--ink-soft);
   font-size: 1.02rem;
-  line-height: 1.72;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.06; letter-spacing: -0.015em; }
-h1 { font-size: clamp(2.7rem, 6.4vw, 5.1rem); font-weight: 400; }
-h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 400; }
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em; }
+h1 { font-size: clamp(2.7rem, 6.4vw, 5.1rem); font-weight: 800; }
+h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; }
 h3 { font-size: 1.4rem; }
-em { font-style: italic; color: var(--clay); }
+em { color: var(--clay); font-style: normal; }
 
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
@@ -58,7 +58,7 @@ img { max-width: 100%; display: block; }
 /* Logo lockup: "Antonio" (gold Allura script) over "DIGITAL" (spaced serif caps).
    Carried over from the taxi identity, TAXI swapped for DIGITAL below the name. */
 .ad-logo { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
-.ad-logo__name { font-family: "Allura", cursive; font-size: 2.15rem; line-height: .82; color: #b7902f; }
+.ad-logo__name { font-family: "Allura", cursive; font-size: 2.15rem; line-height: .82; color: var(--clay); }
 .ad-logo__digital { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: .58rem; letter-spacing: .46em; padding-left: .46em; text-transform: uppercase; color: var(--ink); margin-top: 3px; }
 .nav { display: flex; align-items: center; gap: 34px; }
 .nav > a { font-size: .95rem; color: var(--ink-soft); }
@@ -88,8 +88,8 @@ img { max-width: 100%; display: block; }
 .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 600; font-size: .96rem; line-height: 1; padding: 14px 24px; border-radius: 9px; border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: background .15s, border-color .15s, color .15s; }
 .btn .arw { transition: transform .15s; }
 .btn:hover .arw { transform: translateX(3px); }
-.btn-primary { background: var(--clay); color: #fff; }
-.btn-primary:hover { background: var(--clay-deep); color: #fff; }
+.btn-primary { background: var(--clay); color: #06121c; }
+.btn-primary:hover { background: var(--clay-deep); color: #06121c; }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .btn-ghost:hover { border-color: var(--clay); color: var(--clay); }
 .btn-whatsapp { background: #25d366; color: #fff; }
@@ -126,8 +126,8 @@ img { max-width: 100%; display: block; }
 .usluge-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: clamp(28px, 4vw, 46px); }
 .u-card { display: flex; flex-direction: column; gap: 9px; padding: 26px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: inherit; transition: border-color .2s, transform .2s, box-shadow .2s; }
 .u-card:hover { border-color: var(--clay); transform: translateY(-3px); box-shadow: 0 30px 60px -34px rgba(70, 45, 15, .4); }
-.u-card .u-num { font-family: var(--serif); color: var(--clay); font-size: 1.35rem; line-height: 1; }
-.u-card .u-title { font-family: var(--serif); font-size: 1.22rem; color: var(--ink); line-height: 1.1; }
+.u-card .u-num { font-family: var(--serif); font-weight: 700; color: var(--clay); font-size: 1.35rem; line-height: 1; }
+.u-card .u-title { font-family: var(--serif); font-weight: 700; font-size: 1.22rem; color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; }
 .u-card p { font-size: .9rem; color: var(--ink-soft); }
 .u-card .u-go { margin-top: auto; padding-top: 6px; font-size: .8rem; font-weight: 600; color: var(--clay); }
 
@@ -138,12 +138,12 @@ img { max-width: 100%; display: block; }
 .tier { display: flex; flex-direction: column; padding: 30px 26px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); position: relative; transition: border-color .2s, box-shadow .2s, transform .2s; }
 .tier:hover { border-color: color-mix(in srgb, var(--clay) 45%, var(--line)); transform: translateY(-3px); box-shadow: 0 26px 54px -34px rgba(70, 45, 15, .35); }
 .tier.featured { border-color: var(--clay); box-shadow: 0 30px 60px -32px rgba(70, 45, 15, .4); }
-.tier-badge { position: absolute; top: -12px; left: 26px; background: var(--clay); color: #fff; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; padding: 5px 12px; border-radius: 999px; }
+.tier-badge { position: absolute; top: -12px; left: 26px; background: var(--clay); color: #06121c; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; padding: 5px 12px; border-radius: 999px; }
 .tier h3 { font-family: var(--serif); font-size: 1.45rem; margin-bottom: 4px; }
 .tier .tier-sub { font-size: .9rem; color: var(--ink-soft); margin-bottom: 20px; }
 .tier-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .tier-price .from { width: 100%; margin-bottom: 2px; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); }
-.tier-price .amount { font-family: var(--serif); font-size: 2.35rem; line-height: 1; color: var(--ink); }
+.tier-price .amount { font-family: var(--serif); font-weight: 800; font-size: 2.35rem; line-height: 1; letter-spacing: -0.03em; color: var(--ink); }
 .tier-price .per { font-size: .84rem; color: var(--ink-faint); }
 .tier-feats { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .tier-feats li { display: flex; gap: 11px; align-items: flex-start; font-size: .93rem; color: var(--ink); line-height: 1.4; }
@@ -157,7 +157,7 @@ img { max-width: 100%; display: block; }
 .frame-bar { display: flex; align-items: center; gap: 7px; padding: 11px 15px; border-bottom: 1px solid var(--line); }
 .frame-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
 .frame-url { margin-left: 12px; font-family: var(--mono); font-size: .78rem; color: var(--ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.frame-shot { position: relative; aspect-ratio: 16 / 10; background: linear-gradient(135deg, #efe7d6, #f7f1e6); display: grid; place-items: center; }
+.frame-shot { position: relative; aspect-ratio: 16 / 10; background: linear-gradient(135deg, #1a212c, #12171f); display: grid; place-items: center; }
 .frame-shot .ph { font-family: var(--serif); font-size: 1.3rem; color: var(--ink-faint); font-style: italic; padding: 20px; text-align: center; }
 .frame-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 
@@ -172,7 +172,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 /* ---------- Services: numbered editorial list ---------- */
 .svc-list { border-top: 1px solid var(--line); }
 .svc-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
-.svc-row .num { font-family: var(--serif); font-size: 1.5rem; color: var(--clay); }
+.svc-row .num { font-family: var(--serif); font-weight: 700; font-size: 1.5rem; color: var(--clay); }
 .svc-row h3 { font-size: 1.6rem; }
 .svc-row p { color: var(--ink-soft); }
 .svc-note { margin: 32px auto 0; font-size: .98rem; color: var(--ink-faint); max-width: 62ch; text-align: center; }
@@ -268,8 +268,8 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .consent { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; color: var(--ink-soft); margin: 2px 0 20px; cursor: pointer; line-height: 1.5; }
 .consent input { margin-top: 3px; flex: none; accent-color: var(--clay); }
 .form-status { margin-top: 14px; font-size: .92rem; min-height: 1.2em; }
-.form-status.ok { color: #3f7a4e; }
-.form-status.err { color: #c0392b; }
+.form-status.ok { color: #4ade80; }
+.form-status.err { color: #f87171; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {

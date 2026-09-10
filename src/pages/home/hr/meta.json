@@ -24,12 +24,6 @@
         "postalCode": "22000",
         "addressCountry": "HR"
       },
-      "openingHoursSpecification": [{
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:00",
-        "closes": "15:00"
-      }],
       "founder": {"@type": "Person", "name": "Antonio Šakić"},
       "knowsLanguage": ["hr", "en"],
       "serviceType": ["Izrada web stranica", "Web razvoj", "SEO optimizacija", "Održavanje web stranica", "Web hosting"]

@@ -237,6 +237,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; padding-bottom: 34px; }
 .footer-brand .brand-text { font-family: var(--serif); font-size: 1.6rem; color: var(--ink); }
 .footer-brand p { color: var(--ink-soft); font-size: .96rem; margin-top: 12px; max-width: 38ch; }
+.footer-legal { color: var(--ink-faint) !important; font-size: .76rem !important; line-height: 1.5; max-width: 42ch; }
 .footer-col .footer-col-title { font-family: var(--sans); font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--ink-faint); font-weight: 600; margin-bottom: 15px; }
 .footer-col a, .footer-muted { display: block; font-size: .96rem; color: var(--ink-soft); margin-bottom: 9px; }
 .footer-col a:hover { color: var(--clay); }

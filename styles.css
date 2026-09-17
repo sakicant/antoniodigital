@@ -194,6 +194,15 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .work-item.wip { pointer-events: none; }
 .work-item.wip .frame-shot { filter: saturate(.6); }
 
+/* Compact "mention + link" card (for sites we don't screenshot) */
+.work-link { display: flex; flex-direction: column; gap: 9px; padding: 28px 26px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: inherit; transition: border-color .2s, transform .2s, box-shadow .2s; }
+.work-link:hover { border-color: var(--clay); transform: translateY(-3px); box-shadow: 0 26px 54px -34px rgba(0, 0, 0, .4); }
+.work-link-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.work-link-url { font-family: var(--mono); font-size: .8rem; color: var(--ink-faint); }
+.work-link h3 { font-size: 1.5rem; }
+.work-link p { font-size: .96rem; color: var(--ink-soft); }
+.work-link .visit { margin-top: auto; padding-top: 4px; font-size: .85rem; font-weight: 600; color: var(--clay); }
+
 /* ---------- Specialty (taxi & transfer niche) ---------- */
 .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 68px); align-items: start; }
 .spec-copy h2 { margin-bottom: 20px; }

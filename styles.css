@@ -245,7 +245,9 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 
 /* ---------- Contact page ---------- */
 .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.contact-info h2 { font-size: 1.5rem; margin-bottom: 14px; }
 .contact-info .lead { color: var(--ink-soft); font-size: 1.08rem; margin-bottom: 24px; }
+.consent a { color: var(--clay); text-decoration: underline; }
 .contact-info .btn-whatsapp { margin-bottom: 30px; }
 .contact-list { list-style: none; }
 .contact-list li { display: flex; flex-direction: column; gap: 3px; padding: 16px 0; border-bottom: 1px solid var(--line); }
@@ -270,6 +272,15 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .form-status { margin-top: 14px; font-size: .92rem; min-height: 1.2em; }
 .form-status.ok { color: #4ade80; }
 .form-status.err { color: #f87171; }
+
+/* ---------- Legal / prose pages ---------- */
+.legal { max-width: 760px; }
+.legal h2 { font-size: 1.4rem; letter-spacing: -0.01em; margin: 34px 0 10px; }
+.legal p, .legal li { color: var(--ink-soft); margin-bottom: 12px; }
+.legal ul { padding-left: 22px; margin-bottom: 12px; }
+.legal a { color: var(--clay); border-bottom: 1px solid color-mix(in srgb, var(--clay) 45%, transparent); }
+.legal a:hover { border-bottom-color: var(--clay); }
+.legal .updated { font-size: .88rem; color: var(--ink-faint); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {

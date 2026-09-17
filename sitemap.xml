@@ -33,6 +33,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/portfolio/"/>
   </url>
   <url>
+    <loc>https://antoniodigital.com/pravila-privatnosti/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://antoniodigital.com/pravila-privatnosti/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/pravila-privatnosti/"/>
+  </url>
+  <url>
     <loc>https://antoniodigital.com/usluge/</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>

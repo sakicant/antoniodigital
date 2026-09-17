@@ -1,3 +1,27 @@
+<style>
+  /* Homepage-only LIGHT theme override (scoped to this page while we compare
+     light vs dark). Other pages keep the dark tokens from styles.css. */
+  :root {
+    color-scheme: light;
+    --paper: #f7f4ee;      /* warm light background */
+    --shell: #efe9dc;      /* header & footer, a touch deeper */
+    --surface: #ffffff;    /* cards, frames */
+    --ink: #1c1813;        /* dark text */
+    --ink-soft: #544c40;
+    --ink-faint: #8a8274;
+    --line: #e5ded1;
+    --line-strong: #d2c9b8;
+    --clay: #a9781f;       /* deeper gold so the accent reads on light */
+    --clay-deep: #8a5f12;
+  }
+  /* filled gold buttons: white text for contrast on the light page */
+  .btn-primary, .btn-primary:hover { color: #fff; }
+  /* neutral (not warm-glow) card shadows on light */
+  .frame, .u-card:hover, .tier:hover, .work-item:hover .frame { box-shadow: 0 24px 50px -30px rgba(20, 16, 10, .22); }
+  /* browser-frame placeholder area back to light on this page */
+  .frame-shot { background: linear-gradient(135deg, #efe7d6, #f7f1e6); }
+</style>
+
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">

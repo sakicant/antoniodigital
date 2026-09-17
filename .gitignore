@@ -14,6 +14,6 @@ Thumbs.db
 # Vercel
 .vercel/
 
-# Impeccable design skill (local trial, not deployed)
-.claude/skills/impeccable/
-.claude/agents/impeccable-*.md
+# Local Claude Code skills/agents (Impeccable + thefroject trials, not deployed)
+.claude/skills/
+.claude/agents/

@@ -48,4 +48,12 @@
     <xhtml:link rel="alternate" hreflang="hr" href="https://antoniodigital.com/usluge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/usluge/"/>
   </url>
+  <url>
+    <loc>https://antoniodigital.com/uvjeti-koristenja/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://antoniodigital.com/uvjeti-koristenja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antoniodigital.com/uvjeti-koristenja/"/>
+  </url>
 </urlset>

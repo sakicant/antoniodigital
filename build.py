@@ -188,7 +188,7 @@ def page_priority(slug):
         return "1.0"
     if slug in ("services", "usluge", "portfolio"):
         return "0.9"
-    if slug in ("privacy-policy", "pravila-privatnosti"):
+    if slug in ("privacy-policy", "pravila-privatnosti", "uvjeti-koristenja"):
         return "0.3"
     return "0.8"
 

@@ -250,7 +250,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .footer-col .footer-col-title { font-family: var(--sans); font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--ink-faint); font-weight: 600; margin-bottom: 15px; }
 .footer-col a, .footer-muted { display: block; font-size: .96rem; color: var(--ink-soft); margin-bottom: 9px; }
 .footer-col a:hover { color: var(--clay); }
-.footer-bottom { display: flex; justify-content: space-between; padding-top: 22px; border-top: 1px solid var(--line); font-size: .86rem; color: var(--ink-faint); }
+.footer-bottom { text-align: center; padding-top: 22px; border-top: 1px solid var(--line); font-size: .86rem; color: var(--ink-faint); }
 .footer-bottom a:hover { color: var(--clay); }
 
 /* ---------- Contact page ---------- */

@@ -20,6 +20,76 @@
   var year = document.getElementById("year");
   if (year) { year.textContent = new Date().getFullYear(); }
 
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Fire the hero entrance once the first paint is in.
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { document.body.classList.add("hero-ready"); });
+  });
+
+  // Quiet scroll reveals. Tag a curated set, stagger true lists, reveal once.
+  (function () {
+    var groups = [
+      [".sec-head", 0],
+      [".svc-row", 1], [".u-card", 1], [".tier", 1],
+      [".work-item", 1], [".work-link", 1],
+      [".about-grid > *", 1], [".spec-copy", 0], [".spec-list", 0],
+      [".proof-fig", 0], [".seo-proof", 0], [".contact-info", 0], [".contact-form-card", 0],
+      [".cta .wrap > *", 1], [".svc-note", 0]
+    ];
+    var targets = [];
+    groups.forEach(function (g) {
+      var stagger = g[1];
+      document.querySelectorAll(g[0]).forEach(function (el, i) {
+        if (el.closest(".hero") || el.hasAttribute("data-reveal")) return;
+        el.setAttribute("data-reveal", "");
+        if (stagger) { el.style.setProperty("--i", String(Math.min(i, 6))); }
+        targets.push(el);
+      });
+    });
+    if (!targets.length) return;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      targets.forEach(function (el) { el.classList.add("is-in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("is-in"); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Header condenses once the page has scrolled.
+  (function () {
+    var root = document.documentElement, ticking = false;
+    function update() { root.classList.toggle("scrolled", window.scrollY > 12); ticking = false; }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  })();
+
+  // Warm light in the hero drifts toward the cursor (desktop, motion on).
+  (function () {
+    var hero = document.querySelector(".hero");
+    if (!hero || reduceMotion || !window.matchMedia || !window.matchMedia("(hover: hover)").matches) return;
+    var pending = false, px = 0, py = 0;
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      px = ((e.clientX - r.left) / r.width) * 100;
+      py = ((e.clientY - r.top) / r.height) * 100;
+      if (!pending) {
+        pending = true;
+        requestAnimationFrame(function () {
+          hero.style.setProperty("--spot-x", px.toFixed(1) + "%");
+          hero.style.setProperty("--spot-y", py.toFixed(1) + "%");
+          pending = false;
+        });
+      }
+    });
+  })();
+
   // Contact form: submit to contact.php via fetch, show inline status.
   var form = document.getElementById("contactForm");
   if (form) {

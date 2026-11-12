@@ -153,7 +153,7 @@ img { max-width: 100%; display: block; }
 .tier-feats li.no svg { color: var(--line-strong); }
 
 /* ---------- Browser frame (work screenshots) ---------- */
-.frame { border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface); box-shadow: 0 24px 48px -30px rgba(0, 0, 0, .5); }
+.frame { border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--surface); box-shadow: 0 40px 70px -40px rgba(0, 0, 0, .35); }
 .frame-bar { display: flex; align-items: center; gap: 7px; padding: 11px 15px; border-bottom: 1px solid var(--line); }
 .frame-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
 .frame-url { margin-left: 12px; font-family: var(--mono); font-size: .78rem; color: var(--ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -181,7 +181,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 /* ---------- Work grid ---------- */
 .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 52px); }
 .work-item { display: block; }
-.work-item:hover .frame { box-shadow: 0 30px 56px -34px rgba(0, 0, 0, .55); border-color: var(--clay); }
+.work-item:hover .frame { box-shadow: 0 46px 80px -38px rgba(0, 0, 0, .45); border-color: var(--clay); }
 .work-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .work-cap h3 { font-size: 1.5rem; }
 .work-cap .visit { font-size: .82rem; color: var(--clay); white-space: nowrap; }
@@ -316,142 +316,4 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 8px; }
   .work-cap { flex-direction: column; gap: 4px; }
-}
-
-/* ============================================================
-   CRAFT LAYER
-   Enhancement over the editorial base: themed browser surfaces,
-   page texture, one authored hero moment, quiet scroll reveals,
-   and refined hover states. Everything degrades — no-JS shows all
-   content (styles below gate on html.js), reduced-motion stills it.
-   ============================================================ */
-
-/* ============================================================
-   BOLD HERO — full viewport, oversized type, the work as the visual.
-   Overrides the base hero so the page reads differently the instant
-   it loads, before any scroll.
-   ============================================================ */
-.hero { min-height: calc(100svh - 70px); display: flex; align-items: center; padding: clamp(44px, 6vw, 92px) 0; }
-.hero > .wrap { width: 100%; }
-.hero .hero-copy { max-width: 100%; }
-.hero h1 { font-size: clamp(2.9rem, 8vw, 6.4rem); letter-spacing: -0.04em; line-height: .96; max-width: 19ch; margin-bottom: clamp(26px, 3vw, 36px); }
-.hero-lead { font-size: clamp(1.14rem, 1.6vw, 1.4rem); max-width: 46ch; margin-bottom: clamp(30px, 3vw, 40px); }
-
-@media (max-width: 860px) {
-  .hero { min-height: auto; }
-  .hero .hero-grid { grid-template-columns: 1fr; }
-}
-
-/* ---------- Smooth scroll (Lenis, cinematic pages) ---------- */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-smooth iframe { pointer-events: none; }
-
-/* ---------- Themed browser surfaces ---------- */
-::selection { background: color-mix(in srgb, var(--clay) 28%, transparent); color: var(--ink); }
-html { caret-color: var(--clay); scrollbar-color: var(--line-strong) var(--paper); }
-::-webkit-scrollbar { width: 12px; height: 12px; }
-::-webkit-scrollbar-track { background: var(--paper); }
-::-webkit-scrollbar-thumb { background: var(--line-strong); border: 3px solid var(--paper); border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--clay) 55%, var(--line-strong)); }
-:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; border-radius: 3px; }
-a:focus-visible, .btn:focus-visible { outline-offset: 4px; }
-.tier-price .amount, .frame-url, .work-link-url, .contact-list a { font-variant-numeric: tabular-nums; }
-.legal a, .consent a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
-
-/* ---------- Page texture: a faint film grain, fixed behind content ---------- */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  opacity: .04; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* ---------- Hero: a warm light source that drifts toward the cursor ---------- */
-.hero { position: relative; overflow: hidden; }
-.hero::before {
-  content: ""; position: absolute; z-index: 0; pointer-events: none;
-  top: var(--spot-y, 8%); left: var(--spot-x, 20%);
-  width: 44rem; height: 44rem; transform: translate(-50%, -40%);
-  background: radial-gradient(closest-side, color-mix(in srgb, var(--clay) 15%, transparent), transparent 70%);
-  transition: left .5s cubic-bezier(0.16,1,0.3,1), top .5s cubic-bezier(0.16,1,0.3,1);
-}
-.hero > .wrap { position: relative; z-index: 1; }
-
-/* ---------- Hero focal entrance (above the fold, runs once on load) ---------- */
-html.js .hero-copy > * { opacity: 0; transform: translateY(18px); }
-html.js .hero-grid > .frame { opacity: 0; transform: translateY(24px) scale(.986); }
-html.js .hero h1 em { color: var(--ink); }
-.hero-ready .hero-copy > * {
-  opacity: 1; transform: none;
-  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);
-}
-.hero-ready .hero-copy > *:nth-child(2) { transition-delay: .1s; }
-.hero-ready .hero-copy > *:nth-child(3) { transition-delay: .2s; }
-.hero-ready .hero-grid > .frame {
-  opacity: 1; transform: none;
-  transition: opacity .8s cubic-bezier(0.16,1,0.3,1) .18s, transform .8s cubic-bezier(0.16,1,0.3,1) .18s, box-shadow .4s, border-color .4s;
-}
-/* the three service words ignite from plain ink to gold, in sequence */
-@keyframes ignite {
-  0% { color: var(--ink); }
-  100% { color: var(--clay); }
-}
-.hero-ready h1 em { animation: ignite .7s cubic-bezier(0.16,1,0.3,1) both; }
-.hero-ready h1 em:nth-of-type(1) { animation-delay: .5s; }
-.hero-ready h1 em:nth-of-type(2) { animation-delay: .67s; }
-.hero-ready h1 em:nth-of-type(3) { animation-delay: .84s; }
-
-/* ---------- Quiet scroll reveals (JS tags the targets) ---------- */
-html.js [data-reveal] { opacity: 0; transform: translateY(16px); }
-html.js [data-reveal].is-in {
-  opacity: 1; transform: none;
-  transition: opacity .6s cubic-bezier(0.16,1,0.3,1), transform .6s cubic-bezier(0.16,1,0.3,1);
-  transition-delay: calc(var(--i, 0) * 65ms);
-}
-
-/* ---------- Sticky header condenses on scroll ---------- */
-.site-header { transition: background .3s, box-shadow .3s, border-color .3s; }
-html.scrolled .site-header {
-  background: color-mix(in srgb, var(--shell) 97%, transparent);
-  box-shadow: 0 14px 30px -24px rgba(0,0,0,.7);
-  border-bottom-color: color-mix(in srgb, var(--clay) 22%, var(--line-strong));
-}
-
-/* ---------- Micro-interactions ---------- */
-/* a crisp gold top edge lights up on card hover (inset shadow, nothing to clip) */
-.u-card:hover { box-shadow: inset 0 2px 0 0 var(--clay), 0 22px 44px -32px rgba(0,0,0,.5); }
-.work-link:hover { box-shadow: inset 0 2px 0 0 var(--clay), 0 22px 44px -32px rgba(0,0,0,.5); }
-
-/* a light sweeps across the primary button on hover */
-.btn-primary { position: relative; overflow: hidden; }
-.btn-primary::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(110deg, transparent 25%, color-mix(in srgb, #fff 50%, transparent) 50%, transparent 75%);
-  transform: translateX(-130%); transition: transform .65s cubic-bezier(0.16,1,0.3,1);
-}
-.btn-primary:hover::after { transform: translateX(130%); }
-
-/* nav links grow an underline from the left */
-.nav > a:not(.nav-cta) {
-  background-image: linear-gradient(var(--clay), var(--clay));
-  background-size: 0% 1.5px; background-position: 0 100%; background-repeat: no-repeat;
-  padding-bottom: 4px; transition: background-size .32s cubic-bezier(0.16,1,0.3,1), color .2s;
-}
-.nav > a:not(.nav-cta):hover { background-size: 100% 1.5px; }
-
-/* visit arrows and the frame ease up a touch on card hover */
-.work-link .visit, .work-fact .visit { transition: transform .3s cubic-bezier(0.16,1,0.3,1), color .2s; }
-.work-link:hover .visit, .work-item:hover .visit { transform: translateX(3px); }
-.frame { transition: box-shadow .4s cubic-bezier(0.16,1,0.3,1), border-color .4s, transform .5s cubic-bezier(0.16,1,0.3,1); }
-.work-item:hover .frame { transform: translateY(-4px); }
-
-/* ---------- Reduced motion: keep meaning, drop movement ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
-  html.js .hero-copy > *, html.js .hero-grid > .frame, html.js [data-reveal] { opacity: 1 !important; transform: none !important; }
-  html.js .hero h1 em { color: var(--clay) !important; }
-  .hero::before { display: none; }
 }

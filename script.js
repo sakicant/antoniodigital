@@ -21,6 +21,9 @@
   if (year) { year.textContent = new Date().getFullYear(); }
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Cinematic mode runs only where the scroll libraries loaded (pages flagged
+  // "cinematic") and motion is allowed. Everywhere else the quiet reveals run.
+  var cinematic = !reduceMotion && !!(window.gsap && window.ScrollTrigger) && !!document.querySelector(".hero");
 
   // Fire the hero entrance once the first paint is in.
   requestAnimationFrame(function () {
@@ -28,7 +31,8 @@
   });
 
   // Quiet scroll reveals. Tag a curated set, stagger true lists, reveal once.
-  (function () {
+  // Skipped under cinematic mode, where GSAP owns the reveals instead.
+  if (!cinematic) (function () {
     var groups = [
       [".sec-head", 0],
       [".svc-row", 1], [".u-card", 1], [".tier", 1],
@@ -68,6 +72,60 @@
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     }, { passive: true });
     update();
+  })();
+
+  // Cinematic scroll: smooth momentum + section transitions (GSAP + Lenis).
+  if (cinematic) (function () {
+    var gsap = window.gsap, ST = window.ScrollTrigger;
+    gsap.registerPlugin(ST);
+
+    // Buttery momentum scroll, wired into ScrollTrigger's clock.
+    if (window.Lenis) {
+      var lenis = new Lenis({
+        duration: 1.1, smoothWheel: true,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+      });
+      lenis.on("scroll", ST.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    // Hero drifts up and dims as you scroll past it.
+    gsap.to(".hero .hero-copy", {
+      yPercent: -10, autoAlpha: 0.45, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+
+    // Each section arrives: its heading wipes up, its content rises in sequence.
+    gsap.utils.toArray("main > section:not(.hero)").forEach(function (sec) {
+      var h = sec.querySelector("h2");
+      if (h) {
+        gsap.fromTo(h,
+          { clipPath: "inset(0 0 100% 0)", y: 28 },
+          { clipPath: "inset(0 0 0% 0)", y: 0, duration: 1, ease: "power4.out",
+            scrollTrigger: { trigger: sec, start: "top 82%" } });
+      }
+      var items = gsap.utils.toArray(sec.querySelectorAll(
+        ".lead, .svc-row, .svc-note, .about-body > *, .about-portrait, .cta-actions, .cta .sub"
+      ));
+      if (items.length) {
+        gsap.from(items, {
+          y: 40, autoAlpha: 0, duration: 0.9, ease: "power3.out", stagger: 0.08,
+          scrollTrigger: { trigger: sec, start: "top 78%" }
+        });
+      }
+    });
+
+    // The portrait holds a slow zoom through its section (cinematic drift).
+    var portrait = document.querySelector(".about-portrait img");
+    if (portrait) {
+      gsap.fromTo(portrait, { scale: 1.18 }, {
+        scale: 1, ease: "none",
+        scrollTrigger: { trigger: ".about", start: "top bottom", end: "bottom top", scrub: true }
+      });
+    }
+
+    window.addEventListener("load", function () { ST.refresh(); });
   })();
 
   // Warm light in the hero drifts toward the cursor (desktop, motion on).

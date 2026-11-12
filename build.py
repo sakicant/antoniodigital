@@ -26,6 +26,14 @@ DEFAULT_OG_IMAGE = f"{SITE_URL}/assets/img/og-image.png"
 # secondary and will be served under /en/ once translations are added.
 DEFAULT_LANG = "hr"
 
+# Scroll-choreography libraries, injected only on pages with "cinematic": true
+# in their meta.json. Deferred and in order so script.js sees them ready.
+CINEMATIC_SCRIPTS = (
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>\n'
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>\n'
+    '<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>'
+)
+
 # Supported languages. Codes must be valid ISO 639-1 for correct hreflang.
 # English is added here later, at translation time.
 LANGUAGES = ["hr"]
@@ -174,6 +182,7 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
         "{{HEADER}}": header_html,
         "{{FOOTER}}": footer_html,
         "{{BODY}}": body,
+        "{{SCRIPTS_EXTRA}}": CINEMATIC_SCRIPTS if meta.get("cinematic") else "",
     }
     for k, v in replacements.items():
         html = html.replace(k, v)

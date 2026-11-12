@@ -337,15 +337,9 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 .hero h1 { font-size: clamp(2.9rem, 8vw, 6.4rem); letter-spacing: -0.04em; line-height: .96; max-width: 19ch; margin-bottom: clamp(26px, 3vw, 36px); }
 .hero-lead { font-size: clamp(1.14rem, 1.6vw, 1.4rem); max-width: 46ch; margin-bottom: clamp(30px, 3vw, 40px); }
 
-/* a thin gold pulse travels down, inviting the scroll */
-.hero-scroll { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); width: 1px; height: 50px; background: color-mix(in srgb, var(--clay) 22%, transparent); overflow: hidden; }
-.hero-scroll::after { content: ""; position: absolute; inset: 0; background: linear-gradient(var(--clay), transparent); animation: scrollcue 2s cubic-bezier(0.16,1,0.3,1) infinite; }
-@keyframes scrollcue { 0% { transform: translateY(-100%); } 55%, 100% { transform: translateY(100%); } }
-
 @media (max-width: 860px) {
   .hero { min-height: auto; }
   .hero .hero-grid { grid-template-columns: 1fr; }
-  .hero-scroll { display: none; }
 }
 
 /* ---------- Smooth scroll (Lenis, cinematic pages) ---------- */

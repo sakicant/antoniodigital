@@ -21,9 +21,12 @@
   if (year) { year.textContent = new Date().getFullYear(); }
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // Cinematic mode runs only where the scroll libraries loaded (pages flagged
-  // "cinematic") and motion is allowed. Everywhere else the quiet reveals run.
-  var cinematic = !reduceMotion && !!(window.gsap && window.ScrollTrigger) && !!document.querySelector(".hero");
+  // Cinematic mode runs only on desktop pointers, where the scroll libraries
+  // loaded (pages flagged "cinematic") and motion is allowed. Phones and tablets
+  // keep native scrolling and the lightweight reveals (Lenis must not hijack
+  // touch scroll). Everywhere else the quiet reveals run.
+  var isDesktop = !window.matchMedia || window.matchMedia("(min-width: 861px) and (pointer: fine)").matches;
+  var cinematic = !reduceMotion && isDesktop && !!(window.gsap && window.ScrollTrigger) && !!document.querySelector(".hero");
 
   // Fire the hero entrance once the first paint is in.
   requestAnimationFrame(function () {

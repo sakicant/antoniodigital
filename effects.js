@@ -15,7 +15,7 @@
    * hero content. Animates on every device.
    * ------------------------------------------------------------------ */
   (function network() {
-    var canvas = document.querySelector(".hero-bg");
+    var canvas = document.querySelector(".hero-bg, .page-bg");
     if (!canvas) return;
     var ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -63,7 +63,7 @@
    * On phones/tablets this whole block is skipped: native scroll, no
    * hidden content.
    * ------------------------------------------------------------------ */
-  if (!desktop || reduce) return;
+  if (!document.querySelector(".hero") || !desktop || reduce) return;
 
   var lenis = null;
   if (window.Lenis) {

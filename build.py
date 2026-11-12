@@ -34,11 +34,21 @@ HOME_LABEL = {"hr": "Početna", "en": "Home"}
 LANGUAGE_LABELS = {"hr": "HR", "en": "EN"}
 
 
+# Scroll/animation libraries, injected only on pages with "cinematic": true.
+# GSAP + ScrollTrigger (animation) and Lenis (smooth scroll). effects.js, which
+# uses them and runs the ported Silk WebGL background, is added after, versioned.
+CINEMATIC_LIBS = (
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>\n'
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>\n'
+    '<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>'
+)
+
+
 def compute_asset_version():
     """Short hash of styles.css + script.js so browsers fetch fresh copies
     whenever either file changes instead of serving a stale cached copy."""
     hasher = hashlib.md5()
-    for name in ("styles.css", "script.js"):
+    for name in ("styles.css", "script.js", "effects.js"):
         with open(os.path.join(ROOT, name), "rb") as f:
             hasher.update(f.read())
     return hasher.hexdigest()[:10]
@@ -160,6 +170,10 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
         for s in schema_list
     )
 
+    scripts_extra = ""
+    if meta.get("cinematic"):
+        scripts_extra = CINEMATIC_LIBS + f'\n<script src="/effects.js?v={asset_version}" defer></script>'
+
     html = base_tpl
     replacements = {
         "{{LANG}}": lang,
@@ -174,6 +188,7 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
         "{{HEADER}}": header_html,
         "{{FOOTER}}": footer_html,
         "{{BODY}}": body,
+        "{{SCRIPTS_EXTRA}}": scripts_extra,
     }
     for k, v in replacements.items():
         html = html.replace(k, v)

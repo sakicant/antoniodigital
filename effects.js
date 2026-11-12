@@ -1,6 +1,7 @@
 // Antonio Digital — homepage effects (loaded only on cinematic pages).
-// 1) Silk: an animated WebGL background ported from React Bits' "Silk"
-//    shader (MIT). Degrades to the plain dark hero if WebGL is missing.
+// 1) Mreža: a particle network background (gold dots + links, cursor-reactive)
+//    on a 2D canvas behind the hero. Degrades to the plain dark hero if canvas
+//    is unavailable; cannot break layout or scrolling.
 // 2) Lenis smooth scroll + light GSAP reveals — DESKTOP POINTERS ONLY, so
 //    touch scrolling on phones is never intercepted and nothing is hidden.
 (function () {
@@ -10,110 +11,51 @@
   var desktop = !window.matchMedia || window.matchMedia("(min-width: 861px) and (pointer: fine)").matches;
 
   /* ------------------------------------------------------------------ *
-   * Silk background (WebGL). Runs on every device; purely decorative,
-   * sits behind the hero content and cannot break layout or scrolling.
+   * Hero background: particle network. Purely decorative, behind the
+   * hero content. Animates on every device.
    * ------------------------------------------------------------------ */
-  (function silk() {
+  (function network() {
     var canvas = document.querySelector(".hero-bg");
     if (!canvas) return;
-    var gl = canvas.getContext("webgl", { antialias: true, alpha: true, premultipliedAlpha: false });
-    if (!gl) return; // no WebGL -> the dark hero background simply shows through
-
-    var vertSrc =
-      "attribute vec2 position; attribute vec2 uv; varying vec2 vUv;" +
-      "void main(){ vUv = uv; gl_Position = vec4(position, 0.0, 1.0); }";
-
-    var fragSrc = [
-      "precision highp float;",
-      "varying vec2 vUv;",
-      "uniform float uTime;",
-      "uniform vec3  uColor;",
-      "uniform float uSpeed;",
-      "uniform float uScale;",
-      "uniform float uRotation;",
-      "uniform float uNoiseIntensity;",
-      "const float e = 2.71828182845904523536;",
-      "float noise(vec2 texCoord){",
-      "  float G = e;",
-      "  vec2 r = (G * sin(G * texCoord));",
-      "  return fract(r.x * r.y * (1.0 + texCoord.x));",
-      "}",
-      "vec2 rotateUvs(vec2 uv, float angle){",
-      "  float c = cos(angle); float s = sin(angle);",
-      "  mat2 rot = mat2(c, -s, s, c);",
-      "  return uv * rot;",
-      "}",
-      "void main(){",
-      "  float rnd = noise(gl_FragCoord.xy);",
-      "  vec2 uv = rotateUvs(vUv * uScale, uRotation);",
-      "  vec2 tex = uv * uScale;",
-      "  float tOffset = uSpeed * uTime;",
-      "  tex.y += 0.03 * sin(8.0 * tex.x - tOffset);",
-      "  float pattern = 0.6 + 0.4 * sin(5.0 * (tex.x + tex.y +",
-      "      cos(3.0 * tex.x + 5.0 * tex.y) + 0.02 * tOffset) +",
-      "      sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));",
-      "  vec4 col = vec4(uColor, 1.0) * vec4(vec3(pattern), 1.0) - rnd / 15.0 * uNoiseIntensity;",
-      "  col.a = 1.0;",
-      "  gl_FragColor = col;",
-      "}"
-    ].join("\n");
-
-    function compile(type, src) {
-      var sh = gl.createShader(type);
-      gl.shaderSource(sh, src);
-      gl.compileShader(sh);
-      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) return null;
-      return sh;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    var dpr = 1, N = 70, pts = [], mouse = { x: -9e9, y: -9e9 };
+    function fit() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.floor((canvas.clientWidth || 1) * dpr));
+      canvas.height = Math.max(1, Math.floor((canvas.clientHeight || 1) * dpr));
     }
-    var vs = compile(gl.VERTEX_SHADER, vertSrc);
-    var fs = compile(gl.FRAGMENT_SHADER, fragSrc);
-    if (!vs || !fs) return;
-    var prog = gl.createProgram();
-    gl.attachShader(prog, vs);
-    gl.attachShader(prog, fs);
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-    gl.useProgram(prog);
-
-    // Full-screen triangle: interleaved position(2) + uv(2).
-    var verts = new Float32Array([-1, -1, 0, 0, 3, -1, 2, 0, -1, 3, 0, 2]);
-    var buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
-    var posLoc = gl.getAttribLocation(prog, "position");
-    var uvLoc = gl.getAttribLocation(prog, "uv");
-    gl.enableVertexAttribArray(posLoc);
-    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 16, 0);
-    gl.enableVertexAttribArray(uvLoc);
-    gl.vertexAttribPointer(uvLoc, 2, gl.FLOAT, false, 16, 8);
-
-    gl.uniform3f(gl.getUniformLocation(prog, "uColor"), 0.30, 0.22, 0.12); // warm dark bronze
-    gl.uniform1f(gl.getUniformLocation(prog, "uSpeed"), 2.1);
-    gl.uniform1f(gl.getUniformLocation(prog, "uScale"), 1.4);
-    gl.uniform1f(gl.getUniformLocation(prog, "uRotation"), 0.0);
-    gl.uniform1f(gl.getUniformLocation(prog, "uNoiseIntensity"), 1.3);
-    var uTime = gl.getUniformLocation(prog, "uTime");
-
-    function resize() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var w = canvas.clientWidth || canvas.offsetWidth;
-      var h = canvas.clientHeight || canvas.offsetHeight;
-      canvas.width = Math.max(1, Math.floor(w * dpr));
-      canvas.height = Math.max(1, Math.floor(h * dpr));
-      gl.viewport(0, 0, canvas.width, canvas.height);
+    function seed() {
+      pts = [];
+      for (var i = 0; i < N; i++) pts.push({
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4 * dpr, vy: (Math.random() - 0.5) * 0.4 * dpr
+      });
     }
-    window.addEventListener("resize", resize);
-    resize();
-
-    // The silk is slow ambient motion, so it always animates — including
-    // under reduced-motion, which only governs the scroll effects below.
-    var start = performance.now();
-    function frame(now) {
-      gl.uniform1f(uTime, (now - start) / 1000);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    fit(); seed();
+    window.addEventListener("resize", function () { fit(); seed(); });
+    canvas.addEventListener("pointermove", function (e) {
+      var r = canvas.getBoundingClientRect();
+      mouse.x = (e.clientX - r.left) * dpr; mouse.y = (e.clientY - r.top) * dpr;
+    });
+    canvas.addEventListener("pointerleave", function () { mouse.x = -9e9; mouse.y = -9e9; });
+    (function frame() {
       requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var i, j, maxD = 150 * dpr;
+      for (i = 0; i < N; i++) { var p = pts[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > canvas.width) p.vx *= -1; if (p.y < 0 || p.y > canvas.height) p.vy *= -1; }
+      ctx.lineWidth = dpr; ctx.strokeStyle = "rgb(245,183,60)";
+      for (i = 0; i < N; i++) for (j = i + 1; j < N; j++) {
+        var a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < maxD) { ctx.globalAlpha = (1 - d / maxD) * 0.4; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      for (i = 0; i < N; i++) {
+        var q = pts[i], mx = q.x - mouse.x, my = q.y - mouse.y, md = Math.sqrt(mx * mx + my * my);
+        if (md < maxD * 1.5) { ctx.globalAlpha = (1 - md / (maxD * 1.5)) * 0.75; ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+      }
+      ctx.globalAlpha = 1; ctx.fillStyle = "rgba(245,183,60,0.85)";
+      for (i = 0; i < N; i++) { ctx.beginPath(); ctx.arc(pts[i].x, pts[i].y, 1.7 * dpr, 0, 6.2832); ctx.fill(); }
+    })();
   })();
 
   /* ------------------------------------------------------------------ *
@@ -137,9 +79,6 @@
     var gsap = window.gsap, ST = window.ScrollTrigger;
     gsap.registerPlugin(ST);
     if (lenis) lenis.on("scroll", ST.update);
-    // Reveal section headings and their content as they arrive. gsap.from
-    // only sets a from-state when it actually runs (desktop), so a failed
-    // load can never leave content hidden.
     gsap.utils.toArray("main > section:not(.hero)").forEach(function (sec) {
       var h = sec.querySelector("h2");
       if (h) gsap.from(h, { y: 30, autoAlpha: 0, duration: 0.8, ease: "power3.out",

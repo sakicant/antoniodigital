@@ -105,18 +105,15 @@
     window.addEventListener("resize", resize);
     resize();
 
+    // The silk is slow ambient motion, so it always animates — including
+    // under reduced-motion, which only governs the scroll effects below.
     var start = performance.now();
     function frame(now) {
       gl.uniform1f(uTime, (now - start) / 1000);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       requestAnimationFrame(frame);
     }
-    if (reduce) {
-      gl.uniform1f(uTime, 2.0);
-      gl.drawArrays(gl.TRIANGLES, 0, 3); // one static frame, no motion
-    } else {
-      requestAnimationFrame(frame);
-    }
+    requestAnimationFrame(frame);
   })();
 
   /* ------------------------------------------------------------------ *

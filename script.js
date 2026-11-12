@@ -90,9 +90,13 @@
       gsap.ticker.lagSmoothing(0);
     }
 
-    // Hero drifts up and dims as you scroll past it.
+    // Hero drifts up and dims as you scroll past it; the screenshot floats slower.
     gsap.to(".hero .hero-copy", {
-      yPercent: -10, autoAlpha: 0.45, ease: "none",
+      yPercent: -14, autoAlpha: 0.35, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+    gsap.to(".hero .frame", {
+      yPercent: -9, ease: "none",
       scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
     });
 

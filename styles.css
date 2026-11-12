@@ -326,6 +326,32 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
    content (styles below gate on html.js), reduced-motion stills it.
    ============================================================ */
 
+/* ============================================================
+   BOLD HERO — full viewport, oversized type, the work as the visual.
+   Overrides the base hero so the page reads differently the instant
+   it loads, before any scroll.
+   ============================================================ */
+.hero { min-height: calc(100svh - 70px); display: flex; align-items: center; padding: clamp(44px, 6vw, 92px) 0; }
+.hero > .wrap { width: 100%; }
+.hero .hero-grid { grid-template-columns: 1.1fr .9fr; gap: clamp(30px, 5vw, 72px); align-items: center; }
+.hero h1 { font-size: clamp(2.9rem, 7.4vw, 6rem); letter-spacing: -0.038em; line-height: .98; margin-bottom: clamp(24px, 3vw, 34px); }
+.hero-lead { font-size: clamp(1.12rem, 1.5vw, 1.32rem); max-width: 42ch; margin-bottom: clamp(28px, 3vw, 36px); }
+.hero .frame {
+  box-shadow: 0 46px 90px -48px rgba(0,0,0,.75), 0 22px 70px -42px color-mix(in srgb, var(--clay) 24%, transparent);
+}
+.hero .frame .frame-shot { aspect-ratio: 16 / 11; }
+
+/* a thin gold pulse travels down, inviting the scroll */
+.hero-scroll { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); width: 1px; height: 50px; background: color-mix(in srgb, var(--clay) 22%, transparent); overflow: hidden; }
+.hero-scroll::after { content: ""; position: absolute; inset: 0; background: linear-gradient(var(--clay), transparent); animation: scrollcue 2s cubic-bezier(0.16,1,0.3,1) infinite; }
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 55%, 100% { transform: translateY(100%); } }
+
+@media (max-width: 860px) {
+  .hero { min-height: auto; }
+  .hero .hero-grid { grid-template-columns: 1fr; }
+  .hero-scroll { display: none; }
+}
+
 /* ---------- Smooth scroll (Lenis, cinematic pages) ---------- */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }

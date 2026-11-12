@@ -329,7 +329,8 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
   .svc-row p { grid-column: 2; }
   .about-portrait { max-width: 340px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
+  .footer-brand { grid-column: 1 / -1; text-align: center; }
+  .footer-brand p { margin-left: auto; margin-right: auto; }
   .footer-col { text-align: center; }
 }
 @media (max-width: 520px) {

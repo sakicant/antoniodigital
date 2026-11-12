@@ -48,15 +48,21 @@
       canvas.addEventListener("pointermove", move);
       function resize() { fit(canvas); gl.viewport(0, 0, canvas.width, canvas.height); }
       window.addEventListener("resize", resize); resize();
-      var raf, run = true, t0 = performance.now();
+      var raf, run = true, panel = canvas.closest(".fx-panel"), t = 0, last = performance.now(), drew = false;
       (function frame(now) {
         if (!run) return;
-        gl.uniform1f(uTime, (now - t0) / 1000);
-        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
-        if (uMouse) gl.uniform2f(uMouse, mouse[0], mouse[1]);
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        var hov = !panel || panel.matches(":hover");
+        if (hov) t += (now - last) / 1000;
+        last = now;
+        if (hov || !drew) {
+          gl.uniform1f(uTime, t);
+          if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+          if (uMouse) gl.uniform2f(uMouse, mouse[0], mouse[1]);
+          gl.drawArrays(gl.TRIANGLES, 0, 3);
+          drew = true;
+        }
         raf = requestAnimationFrame(frame);
-      })(t0);
+      })(last);
       return function () {
         run = false; cancelAnimationFrame(raf);
         window.removeEventListener("resize", resize);
@@ -161,8 +167,15 @@
 
   /* ---------------- 2D canvas effects ---------------- */
   function loop(canvas, draw) {
-    var raf, run = true, t0 = performance.now();
-    (function frame(now) { if (!run) return; draw((now - t0) / 1000); raf = requestAnimationFrame(frame); })(t0);
+    var raf, run = true, panel = canvas.closest(".fx-panel"), t = 0, last = performance.now(), drew = false;
+    (function frame(now) {
+      if (!run) return;
+      var hov = !panel || panel.matches(":hover");
+      if (hov) t += (now - last) / 1000;
+      last = now;
+      if (hov || !drew) { draw(t); drew = true; }
+      raf = requestAnimationFrame(frame);
+    })(last);
     return function () { run = false; cancelAnimationFrame(raf); };
   }
 
@@ -297,8 +310,9 @@
 
   // Text: typewriter.
   document.querySelectorAll("[data-type]").forEach(function (el) {
-    var full = el.getAttribute("data-type"), i = 0, del = false; el.classList.add("t-caret");
+    var full = el.getAttribute("data-type"), i = 0, del = false, host = el.closest(".demo-item"); el.classList.add("t-caret");
     (function tick() {
+      if (host && !host.matches(":hover")) { el.textContent = ""; i = 0; del = false; return setTimeout(tick, 200); }
       el.textContent = full.slice(0, i); var d = 120;
       if (!del) { i++; if (i > full.length) { i = full.length; del = true; d = 1500; } }
       else { i--; if (i < 0) { i = 0; del = false; d = 600; } else d = 55; }
@@ -308,15 +322,16 @@
 
   // Text: rotating word.
   document.querySelectorAll("[data-rotate]").forEach(function (el) {
-    var words = el.getAttribute("data-rotate").split("|"), b = el.querySelector("b") || el, i = 0;
+    var words = el.getAttribute("data-rotate").split("|"), b = el.querySelector("b") || el, i = 0, host = el.closest(".demo-item");
     b.textContent = words[0];
-    setInterval(function () { b.style.opacity = "0"; setTimeout(function () { i = (i + 1) % words.length; b.textContent = words[i]; b.style.opacity = "1"; }, 260); }, 2200);
+    setInterval(function () { if (host && !host.matches(":hover")) return; b.style.opacity = "0"; setTimeout(function () { i = (i + 1) % words.length; b.textContent = words[i]; b.style.opacity = "1"; }, 260); }, 2200);
   });
 
   // Text: scramble / decode.
   document.querySelectorAll("[data-scramble]").forEach(function (el) {
-    var full = el.getAttribute("data-scramble"), chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&", f = 0;
+    var full = el.getAttribute("data-scramble"), chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&", f = 0, host = el.closest(".demo-item");
     (function run() {
+      if (host && !host.matches(":hover")) { el.textContent = ""; f = 0; return setTimeout(run, 200); }
       var out = "";
       for (var i = 0; i < full.length; i++) out += (i < f / 2) ? full[i] : (full[i] === " " ? " " : chars[(Math.random() * chars.length) | 0]);
       el.textContent = out; f++;

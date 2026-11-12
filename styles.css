@@ -227,6 +227,12 @@ a.hub-card:hover { border-color: var(--clay); transform: translateY(-4px); box-s
 .ld-orbit::after { animation-delay: -.55s; opacity:.5; }
 @keyframes dOrbit { from{ transform: rotate(0) translateX(15px); } to{ transform: rotate(360deg) translateX(15px); } }
 
+/* Library demos idle until you hover the card: pause CSS animations by default. */
+.demo-item .t-shimmer, .demo-item .t-blur, .demo-item .t-stagger .w, .demo-item .t-caret::after,
+.loader-cell *, .loader-cell *::before, .loader-cell *::after { animation-play-state: paused; }
+.demo-item:hover .t-shimmer, .demo-item:hover .t-blur, .demo-item:hover .t-stagger .w, .demo-item:hover .t-caret::after,
+.loader-cell:hover *, .loader-cell:hover *::before, .loader-cell:hover *::after { animation-play-state: running; }
+
 @media (prefers-reduced-motion: reduce) {
   .t-stagger .w, .t-shimmer, .t-blur, .ld-ring, .ld-dual, .ld-dots span, .ld-bars span, .ld-prog::after, .ld-pulse, .ld-skeleton span, .ld-orbit::before, .ld-orbit::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
   .t-stagger .w, .t-blur { opacity: 1 !important; transform: none !important; filter: none !important; }

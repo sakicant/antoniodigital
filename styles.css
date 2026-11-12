@@ -294,7 +294,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
-  .nav > a:not(.nav-cta), .nav .lang-switch { display: none; }
+  .nav > a, .nav .lang-switch { display: none; }
   .nav-toggle { display: flex; }
   .hero-grid, .proof-grid, .about-grid, .work-grid, .spec-grid, .contact-grid { grid-template-columns: 1fr; }
   .usluge-nav { grid-template-columns: repeat(2, 1fr); }
@@ -306,6 +306,7 @@ section { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line);
   .about-portrait { max-width: 340px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
+  .footer-col { text-align: center; }
 }
 @media (max-width: 520px) {
   .wrap { padding: 0 20px; }

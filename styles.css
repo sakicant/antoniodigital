@@ -53,7 +53,8 @@ img { max-width: 100%; display: block; }
 .skip-link:focus { left: 0; }
 
 /* ---------- Header ---------- */
-.site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--shell) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line-strong); }
+.site-header { position: sticky; top: 0; z-index: 50; background: transparent; border-bottom: 1px solid transparent; transition: background .35s ease, border-color .35s ease, box-shadow .35s ease; }
+.site-header.scrolled { background: color-mix(in srgb, var(--shell) 92%, transparent); backdrop-filter: blur(10px); border-bottom-color: var(--line-strong); box-shadow: 0 12px 30px -24px rgba(0,0,0,.7); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
 /* Logo lockup: "Antonio" (gold Allura script) over "DIGITAL" (spaced serif caps).
    Carried over from the taxi identity, TAXI swapped for DIGITAL below the name. */
@@ -67,7 +68,10 @@ img { max-width: 100%; display: block; }
 .nav-cta::after { content: " \2192"; color: var(--clay); }
 .lang-switch { display: flex; gap: 7px; font-size: .82rem; font-weight: 600; }
 .lang-item.active { color: var(--clay); }
+.lang-item.lang-soon { color: var(--ink-faint); opacity: .6; cursor: default; }
 .lang-sep { color: var(--line-strong); }
+/* keep both language items the same size in the mobile menu (not the big nav links) */
+.mobile-nav .lang-switch .lang-item { font-size: 1.05rem; padding: 0; border-bottom: 0; }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
 .nav-toggle span { width: 24px; height: 1.5px; background: var(--ink); transition: transform .25s, opacity .25s; }

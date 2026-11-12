@@ -20,6 +20,15 @@
   var year = document.getElementById("year");
   if (year) { year.textContent = new Date().getFullYear(); }
 
+  // Header starts transparent (merged with the hero) and gains its own
+  // background once the page is scrolled. Class toggle only, nothing hides.
+  var header = document.getElementById("siteHeader");
+  if (header) {
+    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   // Contact form: submit to contact.php via fetch, show inline status.
   var form = document.getElementById("contactForm");
   if (form) {

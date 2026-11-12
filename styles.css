@@ -105,6 +105,20 @@ img { max-width: 100%; display: block; }
 .fx-tag { display: inline-block; font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .14em; color: var(--clay); border: 1px solid color-mix(in srgb, var(--clay) 40%, var(--line)); padding: 4px 10px; border-radius: 999px; margin-bottom: 14px; }
 .fx-overlay h2 { font-size: clamp(2.1rem, 5vw, 3.6rem); margin-bottom: 10px; }
 .fx-overlay p { color: var(--ink-soft); max-width: 48ch; font-size: 1.05rem; }
+.crumb { color: var(--ink-faint); }
+.crumb:hover { color: var(--clay); }
+
+/* ---------- /primjeri/ hub: category cards ---------- */
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: clamp(28px, 4vw, 46px); }
+.hub-card { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; color: inherit; overflow: hidden; transition: border-color .2s, transform .2s, box-shadow .2s; }
+a.hub-card:hover { border-color: var(--clay); transform: translateY(-4px); box-shadow: inset 0 2px 0 0 var(--clay), 0 26px 54px -34px rgba(0,0,0,.5); }
+.hub-card.soon { opacity: .6; }
+.hub-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.hub-card h2 { font-size: 1.4rem; }
+.hub-count { font-family: var(--mono); font-size: .74rem; color: var(--clay); white-space: nowrap; }
+.hub-tag { font-size: .62rem; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); border: 1px solid var(--line-strong); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.hub-card p { color: var(--ink-soft); font-size: .98rem; }
+.hub-card .visit { margin-top: auto; padding-top: 6px; font-size: .86rem; font-weight: 600; color: var(--clay); }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
 .nav-toggle span { width: 24px; height: 1.5px; background: var(--ink); transition: transform .25s, opacity .25s; }

@@ -216,6 +216,8 @@ def write_sitemap(pages):
     today = datetime.date.today().isoformat()
     entries = []
     for page_id, variants in pages.items():
+        if any(m.get("noindex") for m in variants.values()):
+            continue  # keep demo / noindex pages out of the sitemap
         alts = [(lang, canonical_url(lang, variants[lang].get("slug", "")))
                 for lang in LANGUAGES if lang in variants]
         default_lang = DEFAULT_LANG if DEFAULT_LANG in variants else next(iter(variants))

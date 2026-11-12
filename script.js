@@ -20,6 +20,20 @@
   var year = document.getElementById("year");
   if (year) { year.textContent = new Date().getFullYear(); }
 
+  // Language dropdown: current flag toggles a menu of the other languages.
+  var langDd = document.getElementById("langDd");
+  if (langDd) {
+    var langToggle = langDd.querySelector(".lang-dd-toggle");
+    var closeLang = function () { langDd.classList.remove("open"); langToggle.setAttribute("aria-expanded", "false"); };
+    langToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = langDd.classList.toggle("open");
+      langToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) { if (!langDd.contains(e.target)) closeLang(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLang(); });
+  }
+
   // Header starts transparent (merged with the hero) and gains its own
   // background once the page is scrolled. Class toggle only, nothing hides.
   var header = document.getElementById("siteHeader");

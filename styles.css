@@ -67,13 +67,21 @@ img { max-width: 100%; display: block; }
 .nav > a:hover { color: var(--clay); }
 .nav-cta { color: var(--ink) !important; font-weight: 500; }
 .nav-cta::after { content: " \2192"; color: var(--clay); }
-/* Flag language switch: far right on desktop, beside the hamburger on mobile */
-.lang-switch { display: flex; align-items: center; gap: 12px; font-size: .82rem; font-weight: 700; }
-.lang-item { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-faint); }
-a.lang-item:hover { color: var(--clay); }
-.lang-item.active { color: var(--clay); }
-.lang-item.lang-soon { color: var(--ink-faint); opacity: .55; cursor: default; }
+/* Flag language switch: current flag + dropdown. Far right on desktop,
+   beside the hamburger on mobile. */
 .lang-flag { width: 20px; height: 15px; border-radius: 2px; object-fit: cover; flex: 0 0 auto; box-shadow: 0 0 0 1px rgba(255,255,255,.08); }
+.lang-dd { position: relative; }
+.lang-dd-toggle { display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .82rem; font-weight: 700; color: var(--clay); background: none; border: 0; cursor: pointer; padding: 7px 9px; border-radius: 8px; }
+.lang-dd-toggle:hover { background: rgba(255,255,255,.05); }
+.lang-chev { color: var(--ink-faint); transition: transform .2s ease; }
+.lang-dd.open .lang-chev { transform: rotate(180deg); }
+.lang-dd-menu { position: absolute; top: calc(100% + 8px); right: 0; min-width: 190px; display: none; flex-direction: column; gap: 2px; padding: 6px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 12px; box-shadow: 0 26px 54px -26px rgba(0,0,0,.75); z-index: 60; }
+.lang-dd.open .lang-dd-menu { display: flex; }
+.lang-dd-menu .lang-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: .94rem; font-weight: 500; color: var(--ink-soft); }
+.lang-dd-menu a.lang-item:hover { background: rgba(255,255,255,.05); color: var(--clay); }
+.lang-dd-menu .lang-item.active { color: var(--clay); font-weight: 700; }
+.lang-dd-menu .lang-item.lang-soon { color: var(--ink-faint); cursor: default; }
+.soon-tag { margin-left: auto; font-style: normal; font-size: .66rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); border: 1px solid var(--line-strong); padding: 2px 6px; border-radius: 999px; }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
 .nav-toggle span { width: 24px; height: 1.5px; background: var(--ink); transition: transform .25s, opacity .25s; }

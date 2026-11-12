@@ -194,6 +194,8 @@ a.hub-card:hover { border-color: var(--clay); transform: translateY(-4px); box-s
 .sc-sticky-wrap { position: relative; }
 .sc-sticky { position: sticky; top: 90px; }
 .demo-tallbox { min-height: 300px; border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 50% 40%, #161d28, #0e1116); display: grid; place-items: center; padding: 40px; text-align: center; margin: 18px 0; }
+.sticky-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+@media (max-width: 860px) { .sticky-demo { grid-template-columns: 1fr; } .sc-sticky { position: static; } }
 
 /* ---- Loaders ---- */
 .loaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 18px; margin-top: clamp(28px,4vw,46px); }

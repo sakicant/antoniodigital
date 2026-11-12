@@ -286,4 +286,88 @@
     if (SH[fx]) register(canvas, shaderInit(SH[fx]));
     else if (CANVAS2D[fx]) register(canvas, CANVAS2D[fx]);
   });
+
+  /* ================= UI demos (text, cards, buttons, scroll) ================= */
+
+  // Text: stagger — wrap each word and give it an index for the CSS delay.
+  document.querySelectorAll(".t-stagger").forEach(function (el) {
+    var words = el.textContent.trim().split(/\s+/); el.textContent = "";
+    words.forEach(function (w, i) { var s = document.createElement("span"); s.className = "w"; s.style.setProperty("--i", i); s.textContent = w; el.appendChild(s); el.appendChild(document.createTextNode(" ")); });
+  });
+
+  // Text: typewriter.
+  document.querySelectorAll("[data-type]").forEach(function (el) {
+    var full = el.getAttribute("data-type"), i = 0, del = false; el.classList.add("t-caret");
+    (function tick() {
+      el.textContent = full.slice(0, i); var d = 120;
+      if (!del) { i++; if (i > full.length) { i = full.length; del = true; d = 1500; } }
+      else { i--; if (i < 0) { i = 0; del = false; d = 600; } else d = 55; }
+      setTimeout(tick, d);
+    })();
+  });
+
+  // Text: rotating word.
+  document.querySelectorAll("[data-rotate]").forEach(function (el) {
+    var words = el.getAttribute("data-rotate").split("|"), b = el.querySelector("b") || el, i = 0;
+    b.textContent = words[0];
+    setInterval(function () { b.style.opacity = "0"; setTimeout(function () { i = (i + 1) % words.length; b.textContent = words[i]; b.style.opacity = "1"; }, 260); }, 2200);
+  });
+
+  // Text: scramble / decode.
+  document.querySelectorAll("[data-scramble]").forEach(function (el) {
+    var full = el.getAttribute("data-scramble"), chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&", f = 0;
+    (function run() {
+      var out = "";
+      for (var i = 0; i < full.length; i++) out += (i < f / 2) ? full[i] : (full[i] === " " ? " " : chars[(Math.random() * chars.length) | 0]);
+      el.textContent = out; f++;
+      if (f / 2 < full.length) setTimeout(run, 40); else setTimeout(function () { f = 0; run(); }, 2400);
+    })();
+  });
+
+  // Cards: tilt toward the cursor.
+  document.querySelectorAll(".card-tilt").forEach(function (c) {
+    c.addEventListener("pointermove", function (e) { var r = c.getBoundingClientRect(); var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5; c.style.setProperty("--rx", (px * 16).toFixed(2) + "deg"); c.style.setProperty("--ry", (-py * 16).toFixed(2) + "deg"); });
+    c.addEventListener("pointerleave", function () { c.style.setProperty("--rx", "0deg"); c.style.setProperty("--ry", "0deg"); });
+  });
+
+  // Cards: spotlight that follows the cursor.
+  document.querySelectorAll(".card-spot").forEach(function (c) {
+    c.addEventListener("pointermove", function (e) { var r = c.getBoundingClientRect(); c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px"); });
+  });
+
+  // Buttons: magnetic pull.
+  document.querySelectorAll(".db-mag").forEach(function (b) {
+    b.addEventListener("pointermove", function (e) { var r = b.getBoundingClientRect(); b.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * 0.3) + "px," + ((e.clientY - r.top - r.height / 2) * 0.45) + "px)"; });
+    b.addEventListener("pointerleave", function () { b.style.transform = "translate(0,0)"; });
+  });
+
+  // Buttons: click ripple.
+  document.querySelectorAll(".db-ripple").forEach(function (b) {
+    b.addEventListener("click", function (e) { var r = b.getBoundingClientRect(), rip = document.createElement("span"); rip.className = "rip"; var s = Math.max(r.width, r.height); rip.style.width = rip.style.height = s + "px"; rip.style.left = (e.clientX - r.left) + "px"; rip.style.top = (e.clientY - r.top) + "px"; b.appendChild(rip); setTimeout(function () { rip.remove(); }, 600); });
+  });
+
+  // Scroll: progress bar.
+  var prog = document.querySelector(".scroll-progress");
+  if (prog) { var sp = function () { var h = document.documentElement; prog.style.transform = "scaleX(" + (h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1)) + ")"; }; window.addEventListener("scroll", sp, { passive: true }); sp(); }
+
+  // Scroll: reveal on enter.
+  var revs = document.querySelectorAll(".sc-reveal");
+  if (revs.length && "IntersectionObserver" in window) { var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }); }, { rootMargin: "0px 0px -10% 0px" }); revs.forEach(function (el) { rio.observe(el); }); }
+  else revs.forEach(function (el) { el.classList.add("in"); });
+
+  // Scroll: parallax.
+  var paras = document.querySelectorAll("[data-parallax]");
+  if (paras.length) { var pp = function () { paras.forEach(function (el) { var r = el.getBoundingClientRect(); var c = r.top + r.height / 2 - window.innerHeight / 2; el.style.transform = "translateY(" + (-c * (parseFloat(el.getAttribute("data-parallax")) || 0.15)).toFixed(1) + "px)"; }); }; window.addEventListener("scroll", pp, { passive: true }); pp(); }
+
+  // Scroll: count-up.
+  var cs = document.querySelectorAll("[data-count]");
+  if (cs.length && "IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return; var el = e.target, target = parseFloat(el.getAttribute("data-count")), suf = el.getAttribute("data-suffix") || "", t0 = null;
+        (function step(ts) { if (!t0) t0 = ts; var p = Math.min((ts - t0) / 1400, 1); el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target) + suf; if (p < 1) requestAnimationFrame(step); })();
+        cio.unobserve(el);
+      });
+    }); cs.forEach(function (el) { cio.observe(el); });
+  }
 })();

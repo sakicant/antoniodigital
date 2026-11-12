@@ -48,21 +48,15 @@
       canvas.addEventListener("pointermove", move);
       function resize() { fit(canvas); gl.viewport(0, 0, canvas.width, canvas.height); }
       window.addEventListener("resize", resize); resize();
-      var raf, run = true, panel = canvas.closest(".fx-panel"), t = 0, last = performance.now(), drew = false;
+      var raf, run = true, t0 = performance.now();
       (function frame(now) {
         if (!run) return;
-        var hov = !panel || panel.matches(":hover");
-        if (hov) t += (now - last) / 1000;
-        last = now;
-        if (hov || !drew) {
-          gl.uniform1f(uTime, t);
-          if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
-          if (uMouse) gl.uniform2f(uMouse, mouse[0], mouse[1]);
-          gl.drawArrays(gl.TRIANGLES, 0, 3);
-          drew = true;
-        }
+        gl.uniform1f(uTime, (now - t0) / 1000);
+        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+        if (uMouse) gl.uniform2f(uMouse, mouse[0], mouse[1]);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
         raf = requestAnimationFrame(frame);
-      })(last);
+      })(t0);
       return function () {
         run = false; cancelAnimationFrame(raf);
         window.removeEventListener("resize", resize);
@@ -167,15 +161,8 @@
 
   /* ---------------- 2D canvas effects ---------------- */
   function loop(canvas, draw) {
-    var raf, run = true, panel = canvas.closest(".fx-panel"), t = 0, last = performance.now(), drew = false;
-    (function frame(now) {
-      if (!run) return;
-      var hov = !panel || panel.matches(":hover");
-      if (hov) t += (now - last) / 1000;
-      last = now;
-      if (hov || !drew) { draw(t); drew = true; }
-      raf = requestAnimationFrame(frame);
-    })(last);
+    var raf, run = true, t0 = performance.now();
+    (function frame(now) { if (!run) return; draw((now - t0) / 1000); raf = requestAnimationFrame(frame); })(t0);
     return function () { run = false; cancelAnimationFrame(raf); };
   }
 

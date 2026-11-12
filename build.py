@@ -48,7 +48,7 @@ def compute_asset_version():
     """Short hash of styles.css + script.js so browsers fetch fresh copies
     whenever either file changes instead of serving a stale cached copy."""
     hasher = hashlib.md5()
-    for name in ("styles.css", "script.js", "effects.js"):
+    for name in ("styles.css", "script.js", "effects.js", "primjeri.js"):
         with open(os.path.join(ROOT, name), "rb") as f:
             hasher.update(f.read())
     return hasher.hexdigest()[:10]
@@ -173,6 +173,9 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
     scripts_extra = ""
     if meta.get("cinematic"):
         scripts_extra = CINEMATIC_LIBS + f'\n<script src="/effects.js?v={asset_version}" defer></script>'
+    elif meta.get("demo"):
+        scripts_extra = f'<script src="/primjeri.js?v={asset_version}" defer></script>'
+    head_extra = '<meta name="robots" content="noindex, nofollow">' if meta.get("noindex") else ""
 
     html = base_tpl
     replacements = {
@@ -189,6 +192,7 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
         "{{FOOTER}}": footer_html,
         "{{BODY}}": body,
         "{{SCRIPTS_EXTRA}}": scripts_extra,
+        "{{HEAD_EXTRA}}": head_extra,
     }
     for k, v in replacements.items():
         html = html.replace(k, v)

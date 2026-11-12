@@ -48,7 +48,7 @@ def compute_asset_version():
     """Short hash of styles.css + script.js so browsers fetch fresh copies
     whenever either file changes instead of serving a stale cached copy."""
     hasher = hashlib.md5()
-    for name in ("styles.css", "script.js", "effects.js", "primjeri.js"):
+    for name in ("styles.css", "script.js", "effects.js", "primjeri.js", "bg.js"):
         with open(os.path.join(ROOT, name), "rb") as f:
             hasher.update(f.read())
     return hasher.hexdigest()[:10]
@@ -176,6 +176,11 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
     elif meta.get("demo"):
         scripts_extra = f'<script src="/primjeri.js?v={asset_version}" defer></script>'
     head_extra = '<meta name="robots" content="noindex, nofollow">' if meta.get("noindex") else ""
+    # Site-wide particle-network background on every page except the /primjeri/ demos.
+    page_bg = ""
+    if not slug.startswith("primjeri"):
+        page_bg = ('<canvas class="page-bg" aria-hidden="true"></canvas>\n'
+                   f'<script src="/bg.js?v={asset_version}" defer></script>')
 
     html = base_tpl
     replacements = {
@@ -193,6 +198,7 @@ def build_variant(lang, meta, content_path, base_tpl, hreflang_block, variants, 
         "{{BODY}}": body,
         "{{SCRIPTS_EXTRA}}": scripts_extra,
         "{{HEAD_EXTRA}}": head_extra,
+        "{{PAGE_BG}}": page_bg,
     }
     for k, v in replacements.items():
         html = html.replace(k, v)
